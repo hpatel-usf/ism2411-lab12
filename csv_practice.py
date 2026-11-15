@@ -92,3 +92,27 @@ with open("data/sales.csv", "r") as file:
         print(f"{product}: {quantity} units × ${price:.2f} = ${total:.2f}")
 
 print(f"\nDictReader Total Revenue: ${dict_total_revenue:.2f}")
+
+# Exercise 7
+
+sales_summary = {}
+
+with open("data/sales.csv", "r") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+
+        total = price * quantity
+
+        if product in sales_summary:
+            sales_summary[product] += total
+        else:
+            sales_summary[product] = total
+
+print("\nSales Summary by Product:")
+
+for product in sorted(sales_summary):
+    print(f"{product}: ${sales_summary[product]:.2f}")
