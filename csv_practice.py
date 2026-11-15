@@ -70,3 +70,25 @@ with open("data/sales.csv", "r") as file:
 
 print(f"Rows written: {filtered_rows}")
 print(f"Original rows: {total_rows}")
+
+# Exercise 6
+
+# csv.reader is useful when working with simple CSV files using indexes.
+# csv.DictReader is better when accessing columns by their names.
+
+dict_total_revenue = 0
+
+with open("data/sales.csv", "r") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+
+        total = price * quantity
+        dict_total_revenue += total
+
+        print(f"{product}: {quantity} units × ${price:.2f} = ${total:.2f}")
+
+print(f"\nDictReader Total Revenue: ${dict_total_revenue:.2f}")
