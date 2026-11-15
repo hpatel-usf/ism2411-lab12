@@ -1,5 +1,9 @@
-import csv
+# Reflection 1: Python makes it easier to automate tasks and work with large amounts of data, while Excel is easier for viewing data and making charts. Python is also better for repeating tasks without doing everything manually.
 
+# Reflection 2: A business could use append mode to keep track of daily sales. Append mode is useful because it adds new records without deleting the old ones, making it easier to track sales over time.
+
+import csv
+from datetime import datetime
 # Exercise 2
 
 with open("data/sales.csv", "r") as file:
@@ -116,3 +120,14 @@ print("\nSales Summary by Product:")
 
 for product in sorted(sales_summary):
     print(f"{product}: ${sales_summary[product]:.2f}")
+
+# Exercise 8
+
+current_time = datetime.now()
+
+with open("data/run_log.txt", "a") as log_file:
+    log_file.write(
+        f"{current_time}: Total Revenue = ${total_revenue:.2f}\n"
+    )
+
+print("\nRevenue logged successfully.")
